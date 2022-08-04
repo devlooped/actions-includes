@@ -5,6 +5,14 @@ embeds the included files.
 
 Usage:
 
+In your content files:
+
+```html
+<!-- include [RELATIVE_PATH] -->
+```
+
+To run the action and automatically create a PR with the resolved includes:
+
 ```yml
 on: 
   push:
@@ -39,3 +47,36 @@ Note how you can trivially create PRs that update the changed
 files so the includes are always resolved automatically whenever 
 you change any of the monitored files. The `include: '*.md'` 
 above wouldn't be required since it's the default.
+
+## How it works
+
+You can include content from arbitrary external files with:
+
+```Markdown
+<!-- include header.md -->
+
+# This my actual content
+
+<!-- include footer.md -->
+```
+
+When the action runs for the first time, it will turn the 
+above content into:
+
+```Markdown
+<!-- include header.md -->
+This comes from the included header!
+<!-- header.md -->
+
+# This my actual content
+
+<!-- include footer.md -->
+This comes from the included footer!
+<!-- footer.md -->
+```
+
+The action is idempotent, so it is safe for it to run on pushes of the 
+same files it changed via the includes (since no further changes will 
+be detected).
+
+> NOTE: the included path must be relative to the including file

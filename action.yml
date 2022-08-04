@@ -17,8 +17,9 @@ runs:
             $replacements = @{}
             foreach ($match in (Select-String -Pattern '<!--\s?include (.*?)\s?-->' -Path $file)) {
                 $includedPath = ($match.Matches[0].Value -replace '<!--\s?include ','' -replace '\s?-->', '').Trim()
-                if (Test-Path $includedPath) {
-                    $include = Get-Content $includedPath -Raw
+                $includedFullPath = Join-Path (Get-ChildItem -Path $file).DirectoryName -ChildPath $includedPath
+                if (Test-Path $includedFullPath) {
+                    $include = Get-Content $includedFullPath -Raw
                     # see if we already have a section we previously replaced
                     $existingRegex = "<!--\s?include $includedPath\s?-->[\s\S]*<!-- $includedPath -->"
                     $replacement = "<!-- include $includedPath -->`n$include`n<!-- $includedPath -->"
@@ -37,8 +38,14 @@ runs:
                     #Write-Host "Replacing $($replacement.Key) with $($replacement.Value)"
                     $content = $content -replace $replacement.Key, $replacement.Value
                 }
-                Set-Content $file -Value $content.TrimEnd()
-                Write-Host "Updated $($file.Name)"
+
+                $content = $content.TrimEnd()
+                $actual = (Get-Content $file -Raw).TrimEnd()
+                
+                if ($content -ne $actual) {
+                    Set-Content $file -Value $content.TrimEnd()
+                    Write-Host "Updated $($file.Name)"
+                }
             }
         }
 
