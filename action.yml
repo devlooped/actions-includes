@@ -1,10 +1,17 @@
-name: includes
-description: Resolves include directives written as HTML comments
+name: Resolve File Includes
+author: Daniel Cazzulino
+description: "Resolves include directives written as HTML comments, like <!-- include: path/to/file.md --> (i.e. in your readme)"
+
 inputs:
   include:  # file extension filter expression
     description: 'File extensions to include for processing, like *.md'
     required: false
     default: '*.md'
+
+branding:
+  icon: "code"
+  color: "purple"
+
 runs:
   using: "composite"
   steps:

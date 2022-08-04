@@ -9,6 +9,7 @@ In your content files:
 
 ```html
 <!-- include [RELATIVE_PATH] -->
+
 ```
 
 To run the action and automatically create a PR with the resolved includes:
@@ -40,7 +41,8 @@ jobs:
           branch: markdown-includes
           delete-branch: true
           commit-message: +M▼ includes
-          title: "+M▼ includes"
+          title: +M▼ includes
+          body: +M▼ includes
 ```
 
 Note how you can trivially create PRs that update the changed 
