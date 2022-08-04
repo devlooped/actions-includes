@@ -34,7 +34,7 @@ runs:
 
             if ($replacements.Count -gt 0) {
                 foreach ($replacement in $replacements.GetEnumerator()) {
-                    write-host "Replacing $($replacement.Key) with $($replacement.Value)"
+                    #Write-Host "Replacing $($replacement.Key) with $($replacement.Value)"
                     $content = $content -replace $replacement.Key, $replacement.Value
                 }
                 Set-Content $file -Value $content.TrimEnd()
