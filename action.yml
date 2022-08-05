@@ -27,6 +27,8 @@ runs:
                 $includedFullPath = Join-Path (Get-ChildItem -Path $file).DirectoryName -ChildPath $includedPath
                 if (Test-Path $includedFullPath) {
                     $include = Get-Content $includedFullPath -Raw
+                    # TODO: disable nested includes until we can properly support that scenario 
+                    $include = $include -replace '<!--\s?include ','<!-- '
                     # see if we already have a section we previously replaced
                     $existingRegex = "<!--\s?include $includedPath\s?-->[\s\S]*<!-- $includedPath -->"
                     $replacement = "<!-- include $includedPath -->`n$include`n<!-- $includedPath -->"
