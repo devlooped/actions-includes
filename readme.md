@@ -105,3 +105,5 @@ same files it changed via the includes (since no further changes will
 be detected).
 
 > NOTE: the included path must be relative to the including file. 
+
+<!-- include docs/sponsors.md -->

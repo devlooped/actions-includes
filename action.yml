@@ -7,6 +7,9 @@ inputs:
     description: 'File extensions to include for processing, like *.md'
     required: false
     default: '*.md'
+  validate:  # whether to validate (and error) include links
+    required: false
+    default: true
 
 branding:
   icon: "code"
@@ -18,6 +21,7 @@ runs:
     - name: includes
       shell: pwsh
       run: |
+        $validate = $${{ inputs.validate }}
         foreach ($file in (Get-ChildItem -Recurse -Path ${{ inputs.include }})) {
             Write-Output "Processing $file"
             $content = Get-Content $file -Raw
@@ -37,7 +41,11 @@ runs:
                         $anchor = "<!-- $fragment -->"
                         $start = $include.IndexOf($anchor)
                         if ($start -eq -1) {
-                            Write-Error "Referenced anchor $fragment not found in $includedPath"
+                            if ($validate) {
+                                Write-Error "Referenced anchor $fragment not found in $includedPath"
+                            } else {
+                                Write-Warning "Referenced anchor $fragment not found in $includedPath"
+                            }
                             continue
                         }
                         $include = $include.Substring($start)
@@ -57,7 +65,11 @@ runs:
                         $replacements["<!--\s?include $includedPath$fragment\s?-->"] = $replacement
                     }
                 } else {
-                    Write-Error "Included file $includedPath in $($file.Name) not found" 
+                    if ($validate) {
+                        Write-Error "Included file $includedPath in $($file.Name) not found" 
+                    } else {
+                        Write-Warning "Included file $includedPath in $($file.Name) not found" 
+                    }
                 }
             }
 
