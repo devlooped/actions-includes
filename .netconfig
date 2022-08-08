@@ -33,3 +33,8 @@
 	sha = a0f58a6d63e48ae6e55944c556d0bc94476dc8df
 	etag = 2d47e2fc4fdfa3515203d452674566e3df507461f9938f451a06d79deb687d24
 	weak
+[file ".github/workflows/changelog.yml"]
+	url = https://github.com/devlooped/oss/blob/main/.github/workflows/changelog.yml
+	sha = 15e94864c0806dd899b4b8f7bb4fc8b99a62111a
+	etag = 3a0f1fb7819245b4b35c918f86c177ffa48cbecd153c62be2e245c02ca993508
+	weak
