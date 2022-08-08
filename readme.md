@@ -1,4 +1,4 @@
-# +M▼ includes
+# +Mᐁ includes
 
 A GitHub action that resolves includes (by default in markdown files) and 
 embeds the included files.
