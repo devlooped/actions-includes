@@ -8,9 +8,32 @@ Usage:
 In your content files:
 
 ```html
-<!-- include [RELATIVE_PATH] -->
-
+<!-- include [RELATIVE_PATH][#ANCHOR] -->
 ```
+
+The optional `#anchor` allows including fragments of files. Anchors are 
+defined as:
+
+```html
+<!-- #ANCHOR -->
+```
+
+with an optional "closing" anchor defined exactly the same as the starting one.
+If there is no closing anchor, the included content is from anchor declaration
+to the end of the file. For example:
+
+```html
+<!-- #badges -->
+[...] //some shields.io badges you use everywhere
+<!-- #badges -->
+```
+
+Which can be included with:
+
+```html
+<!-- include common.md#badges -->
+```
+
 
 To run the action and automatically create a PR with the resolved includes:
 
@@ -81,4 +104,4 @@ The action is idempotent, so it is safe for it to run on pushes of the
 same files it changed via the includes (since no further changes will 
 be detected).
 
-> NOTE: the included path must be relative to the including file
+> NOTE: the included path must be relative to the including file. 

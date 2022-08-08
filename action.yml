@@ -19,23 +19,42 @@ runs:
       shell: pwsh
       run: |
         foreach ($file in (Get-ChildItem -Recurse -Path ${{ inputs.include }})) {
-            Write-Host "Processing $file"
+            Write-Output "Processing $file"
             $content = Get-Content $file -Raw
             $replacements = @{}
             foreach ($match in (Select-String -Pattern '<!--\s?include (.*?)\s?-->' -Path $file)) {
                 $includedPath = ($match.Matches[0].Value -replace '<!--\s?include ','' -replace '\s?-->', '').Trim()
+                $fragment = $null
+                if ($includedPath.Contains('#')) {
+                    $fragment = '#' + $includedPath.Split('#')[1]
+                    $includedPath = $includedPath.Substring(0, $includedPath.IndexOf('#'))
+                }
                 $includedFullPath = Join-Path (Get-ChildItem -Path $file).DirectoryName -ChildPath $includedPath
                 if (Test-Path $includedFullPath) {
-                    $include = Get-Content $includedFullPath -Raw
+                    $include = (Get-Content $includedFullPath -Raw) ?? ''
+                    # Resolve fragment specifier if present
+                    if ($fragment) {
+                        $anchor = "<!-- $fragment -->"
+                        $start = $include.IndexOf($anchor)
+                        if ($start -eq -1) {
+                            Write-Error "Referenced anchor $fragment not found in $includedPath"
+                            continue
+                        }
+                        $include = $include.Substring($start)
+                        $end = $include.IndexOf($anchor, $anchor.Length)
+                        if ($end -ne -1) {
+                            $include = $include.Substring(0, $end + $anchor.Length)
+                        }
+                    }
                     # TODO: disable nested includes until we can properly support that scenario 
                     $include = $include -replace '<!--\s?include ','<!-- '
                     # see if we already have a section we previously replaced
-                    $existingRegex = "<!--\s?include $includedPath\s?-->[\s\S]*<!-- $includedPath -->"
-                    $replacement = "<!-- include $includedPath -->`n$include`n<!-- $includedPath -->"
+                    $existingRegex = "<!--\s?include $includedPath$fragment\s?-->[\s\S]*<!-- $includedPath$fragment -->"
+                    $replacement = "<!-- include $includedPath$fragment -->`n$include`n<!-- $includedPath$fragment -->"
                     if ($content -match $existingRegex) {
                         $replacements[$existingRegex] = $replacement
                     } else {
-                        $replacements["<!--\s?include $includedPath\s?-->"] = $replacement
+                        $replacements["<!--\s?include $includedPath$fragment\s?-->"] = $replacement
                     }
                 } else {
                     Write-Error "Included file $includedPath in $($file.Name) not found" 
@@ -53,8 +72,7 @@ runs:
                 
                 if ($content -ne $actual) {
                     Set-Content $file -Value $content.TrimEnd()
-                    Write-Host "Updated $($file.Name)"
+                    Write-Output "Updated $($file.Name)"
                 }
             }
         }
-
