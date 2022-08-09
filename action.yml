@@ -3,11 +3,20 @@ author: Daniel Cazzulino
 description: "Resolves include directives written as HTML comments, like <!-- include: path/to/file.md --> (i.e. in your readme)"
 
 inputs:
-  include:  # file extension filter expression
-    description: 'File extensions to include for processing, like *.md'
+  include:  # files to include for processing
+    description: 'Used as the Get-ChildItem -Include parameter, i.e. *.md'
     required: false
     default: '*.md'
-  validate:  # whether to validate (and error) include links
+  exclude:  # files to exclude from processing
+    description: 'Used as the Get-ChildItem -Exclude parameter, foo.md'
+    required: false
+    default: '$null'
+  recurse:  # whether to recurse into subdirectories
+    description: 'Whether to process files recursively in subdirectories' 
+    required: false
+    default: true
+  validate: 
+    description: 'Whether to validate (and error) include links' 
     required: false
     default: true
 
@@ -21,10 +30,24 @@ runs:
     - name: includes
       shell: pwsh
       run: |
+        $include = ${{ inputs.include }} ?? ''
+        $exclude = ${{ inputs.exclude }} ?? ''
+        $recurse = $${{ inputs.recurse }}
         $validate = $${{ inputs.validate }}
-        foreach ($file in (Get-ChildItem -Recurse -Path ${{ inputs.include }})) {
+        $files = if ($recurse) {
+          Get-ChildItem -Include $include -Exclude $exclude -Recurse
+        } else {
+          Get-ChildItem -Include $include -Exclude $exclude
+        }
+
+        foreach ($file in $files) {
             Write-Output "Processing $file"
-            $content = Get-Content $file -Raw
+            $content = ((Get-Content $file -Raw) ?? '').Trim()
+            if ($content.StartsWith('<!-- exclude -->') -or $content.EndsWith('<!-- exclude -->')) {
+                Write-Output "Excluding $file"
+                continue
+            }
+
             $replacements = @{}
             foreach ($match in (Select-String -Pattern '<!--\s?include (.*?)\s?-->' -Path $file)) {
                 $includedPath = ($match.Matches[0].Value -replace '<!--\s?include ','' -replace '\s?-->', '').Trim()
@@ -54,8 +77,8 @@ runs:
                             $include = $include.Substring(0, $end + $anchor.Length)
                         }
                     }
-                    # TODO: disable nested includes until we can properly support that scenario 
-                    $include = $include -replace '<!--\s?include ','<!-- '
+                    # TODO: disable nested includes until we can properly support that scenario, and nested excludes
+                    $include = $include -replace '<!--\s?include ','<!-- ' -replace '<!-- exclude -->', ''
                     # see if we already have a section we previously replaced
                     $existingRegex = "<!--\s?include $includedPath$fragment\s?-->[\s\S]*<!-- $includedPath$fragment -->"
                     $replacement = "<!-- include $includedPath$fragment -->`n$include`n<!-- $includedPath$fragment -->"
