@@ -30,8 +30,8 @@ runs:
     - name: includes
       shell: pwsh
       run: |
-        $include = ${{ inputs.include }} ?? ''
-        $exclude = ${{ inputs.exclude }} ?? ''
+        $include = '{{ inputs.include }}' ?? ''
+        $exclude = '${{ inputs.exclude }}' ?? ''
         $recurse = $${{ inputs.recurse }}
         $validate = $${{ inputs.validate }}
         $files = if ($recurse) {
