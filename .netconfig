@@ -45,8 +45,8 @@
 	weak
 [file "docs/sponsors.md"]
 	url = https://github.com/devlooped/sponsors/blob/main/sponsors.md
-	sha = 0a67f1a43b12eabc5fe3229fd9c9239dd97fc645
-	etag = 39e8d18b010c445fb65046c8504c1a95d66d5b4c6aff2f859d030a98faf182de
+	sha = 4722856ec9385044e9a553aa6b85f2f3728098dc
+	etag = 32d12ff9caf2320f57c78120d69c95798c8aca6ef8b946bff7ad678c0c40a656
 	weak
 [file ".github/workflows/release-notes.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/release-notes.yml
