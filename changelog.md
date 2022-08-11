@@ -2,7 +2,19 @@
 
 ## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-11)
 
-[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.2...v1)
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.1.0...v1)
+
+## [v1.1.0](https://github.com/devlooped/actions-includes/tree/v1.1.0) (2022-08-11)
+
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.2...v1.1.0)
+
+**Implemented enhancements:**
+
+- Allow including directly from URLs too [\#9](https://github.com/devlooped/actions-includes/issues/9)
+
+**Merged pull requests:**
+
+- ⬆️ Bump files with dotnet-file sync [\#7](https://github.com/devlooped/actions-includes/pull/7) ([devlooped-bot](https://github.com/devlooped-bot))
 
 ## [v1.0.2](https://github.com/devlooped/actions-includes/tree/v1.0.2) (2022-08-11)
 
