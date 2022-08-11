@@ -1,8 +1,16 @@
 # Changelog
 
-## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-09)
+## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-11)
 
-[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.1...v1)
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.2...v1)
+
+## [v1.0.2](https://github.com/devlooped/actions-includes/tree/v1.0.2) (2022-08-11)
+
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.1...v1.0.2)
+
+**Merged pull requests:**
+
+- ⬆️ Bump files with dotnet-file sync [\#6](https://github.com/devlooped/actions-includes/pull/6) ([devlooped-bot](https://github.com/devlooped-bot))
 
 ## [v1.0.1](https://github.com/devlooped/actions-includes/tree/v1.0.1) (2022-08-09)
 
