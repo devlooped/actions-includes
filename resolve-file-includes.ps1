@@ -1,7 +1,7 @@
 $include = $env:RESOLVE_INCLUDE ?? '*.md'
 $exclude = $env:RESOLVE_EXCLUDE ?? $null
-$recurse = [bool]$env:RESOLVE_RECURSE
-$validate = [bool]$env:RESOLVE_VALIDATE
+$recurse = [bool]::Parse($env:RESOLVE_RECURSE ?? "true")
+$validate = [bool]::Parse($env:RESOLVE_VALIDATE ?? "true")
 
 $files = if ($recurse) {
   Get-ChildItem -Include $include -Exclude $exclude -Recurse
