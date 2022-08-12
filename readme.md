@@ -8,7 +8,7 @@ embeds the included files.
 In your content files:
 
 ```html
-<!-- include [RELATIVE_PATH][#ANCHOR] -->
+<!-- include [RELATIVE_PATH or PUBLIC_URL][#ANCHOR] -->
 ```
 
 The optional `#anchor` allows including fragments of files. Anchors are 
@@ -111,7 +111,7 @@ You can include content from arbitrary external files with:
 
 # This my actual content
 
-<!-- include footer.md -->
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 ```
 
 When the action runs for the first time, it will turn the 
@@ -124,9 +124,9 @@ This comes from the included header!
 
 # This my actual content
 
-<!-- include footer.md -->
-This comes from the included footer!
-<!-- footer.md -->
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
+This comes from the included footer from a URL!
+<!-- https://github.com/devlooped/sponsors/raw/main/footer.md -->
 ```
 
 The action is idempotent, so it is safe for it to run on pushes of the 
