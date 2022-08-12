@@ -112,45 +112,6 @@ You can include content from arbitrary external files with:
 # This my actual content
 
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
-```
-
-When the action runs for the first time, it will turn the 
-above content into:
-
-```Markdown
-<!-- include header.md -->
-This comes from the included header!
-<!-- header.md -->
-
-# This my actual content
-
-<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
-This comes from the included footer from a URL!
-<!-- https://github.com/devlooped/sponsors/raw/main/footer.md -->
-```
-
-The action is idempotent, so it is safe for it to run on pushes of the 
-same files it changed via the includes (since no further changes will 
-be detected).
-
-> NOTE: the included path must be relative to the including file. 
-
-## Limitations
-
-* Nested includes are not supported for now (the `include` keyword inside the HTML 
-  comment "directive" will be stripped on inclusion).
-* File processing order matches what the following equivalent command on the 
-  working directory returns via PowerShell:
-  
-  ```
-  pwsh> gci -include [include] -exclude [exclude] [-recurse]
-  ```
-
-  This knowledge can be used to workaround the nested includes limitation by 
-  running the action multiple times with different sets of files.
-
-
-<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
 
 <!-- sponsors.md -->
