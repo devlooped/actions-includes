@@ -1,10 +1,10 @@
 # Changelog
 
-## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-11)
+## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-12)
 
 [Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.1.0...v1)
 
-## [v1.1.0](https://github.com/devlooped/actions-includes/tree/v1.1.0) (2022-08-11)
+## [v1.1.0](https://github.com/devlooped/actions-includes/tree/v1.1.0) (2022-08-12)
 
 [Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.0.2...v1.1.0)
 
