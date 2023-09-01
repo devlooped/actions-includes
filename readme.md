@@ -149,8 +149,4 @@ be detected).
   This knowledge can be used to workaround the nested includes limitation by 
   running the action multiple times with different sets of files.
 
-
-[![Sponsor this project](https://raw.githubusercontent.com/devlooped/sponsors/main/sponsor.png "Sponsor this project")](https://github.com/sponsors/devlooped)
-&nbsp;
-
-[Learn more about GitHub Sponsors](https://github.com/sponsors)
+<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
