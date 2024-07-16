@@ -89,6 +89,7 @@ jobs:
       - name: ✍ pull request
         uses: peter-evans/create-pull-request@v3
         with:
+          add-paths: '**.md'
           base: main
           branch: markdown-includes
           delete-branch: true
