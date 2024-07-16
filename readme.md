@@ -44,7 +44,7 @@ You can exclude a file from processing by having as the first (or last) line:
 
 ```
 - name: +Mᐁ includes
-  uses: devlooped/actions-include@v6
+  uses: devlooped/actions-include@v1
   with:
     # files to include for processing, i.e. '*.md'
     # Default: *.md
