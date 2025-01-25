@@ -5,13 +5,13 @@
 	weak
 [file ".github/workflows/dotnet-file.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/dotnet-file.yml
-	sha = f08c3f28e46e28eb31e70846d65e57aa9553ce56
-	etag = 567444486383d032c1c5fbc538f07e860f92b1d08c66ac6ffb1db64ca539251c
+	sha = 7afe350f7e80a230e922db026d4e1198ba15cae1
+	etag = 65e9794df6caff779eb989c8f71ddf4d4109b24a75af79e4f8d0fe6ba7bd9702
 	weak
 [file ".gitignore"]
 	url = https://github.com/devlooped/oss/blob/main/.gitignore
-	sha = b87a8a795a4c2b6830602225c066c11108552a99
-	etag = 96e0860052044780f1fc9e3bdfbee09d82d5dddb8b1217d67460fc7330a64dd8
+	sha = e0be248fff1d39133345283b8227372b36574b75
+	etag = c449ec6f76803e1891357ca2b8b4fcb5b2e5deeff8311622fd92ca9fbf1e6575
 	weak
 [file "license.txt"]
 	url = https://github.com/devlooped/oss/blob/main/license.txt
@@ -20,6 +20,6 @@
 	weak
 [file ".github/workflows/changelog.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/changelog.yml
-	sha = a4b66eb5f4dfb9704502f19f59ba33cb4855188c
-	etag = 54c0b571648b1055beb3ddac180b34e93a9869b9f0277de306901b2c1dbe0b2c
+	sha = 5fb172362c767bef7c36478f1a6bdc264723f8f9
+	etag = ad1efa56d6024ee1add2bcda81a7e4e38d0e9069473c6ff70374d5ce06af1f5a
 	weak
