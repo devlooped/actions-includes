@@ -11,7 +11,7 @@ $files = if ($recurse) {
 
 foreach ($file in $files) {
     Write-Output "Processing $file"
-    $content = ((Get-Content $file -Raw) ?? '').Trim()
+    $content = ((Get-Content $file -Raw -Encoding UTF8) ?? '').Trim()
     if ($content.StartsWith('<!-- exclude -->') -or $content.EndsWith('<!-- exclude -->')) {
         Write-Output "Excluding $file"
         continue
@@ -33,7 +33,7 @@ foreach ($file in $files) {
             $include = if ($isuri) {
                 (Invoke-RestMethod $includedPath) ?? ''
             } else {
-                (Get-Content $includedFullPath -Raw) ?? ''
+                (Get-Content $includedFullPath -Raw -Encoding UTF8) ?? ''
             }
 
             # Resolve fragment specifier if present
@@ -80,10 +80,10 @@ foreach ($file in $files) {
         }
 
         $content = $content.TrimEnd()
-        $actual = (Get-Content $file -Raw).TrimEnd()
+        $actual = (Get-Content $file -Raw -Encoding UTF8).TrimEnd()
         
         if ($content -ne $actual) {
-            Set-Content $file -Value $content.TrimEnd()
+            Set-Content $file -Value $content.TrimEnd() -Encoding UTF8
             Write-Output "Updated $($file.Name)"
         }
     }
