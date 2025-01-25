@@ -1,8 +1,24 @@
 # Changelog
 
-## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2022-08-12)
+## [v1](https://github.com/devlooped/actions-includes/tree/v1) (2025-01-25)
 
-[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.1.0...v1)
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.1.1...v1)
+
+## [v1.1.1](https://github.com/devlooped/actions-includes/tree/v1.1.1) (2025-01-25)
+
+[Full Changelog](https://github.com/devlooped/actions-includes/compare/v1.1.0...v1.1.1)
+
+**Implemented enhancements:**
+
+- Make sure includes use UTF-8 [\#15](https://github.com/devlooped/actions-includes/pull/15) ([kzu](https://github.com/kzu))
+
+**Merged pull requests:**
+
+- Add automatic release generation configuration [\#16](https://github.com/devlooped/actions-includes/pull/16) ([kzu](https://github.com/kzu))
+- ⬆️ Bump files with dotnet-file sync [\#14](https://github.com/devlooped/actions-includes/pull/14) ([devlooped-bot](https://github.com/devlooped-bot))
+- ⬆️ Bump files with dotnet-file sync [\#12](https://github.com/devlooped/actions-includes/pull/12) ([devlooped-bot](https://github.com/devlooped-bot))
+- +Mᐁ includes [\#11](https://github.com/devlooped/actions-includes/pull/11) ([devlooped-bot](https://github.com/devlooped-bot))
+- ⬆️ Bump files with dotnet-file sync [\#10](https://github.com/devlooped/actions-includes/pull/10) ([devlooped-bot](https://github.com/devlooped-bot))
 
 ## [v1.1.0](https://github.com/devlooped/actions-includes/tree/v1.1.0) (2022-08-12)
 
