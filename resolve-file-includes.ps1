@@ -6,12 +6,10 @@ $validate = [bool]::Parse($env:RESOLVE_VALIDATE ?? "true")
 Write-Output "Include: $include"
 Write-Output "Exclude: $exclude"
 
-$files = {}
-
-if ($recurse) {
-  $files = (Get-ChildItem -Include $include -Exclude $exclude -Recurse)
+$files = if ($recurse) {
+  Get-ChildItem -Include $include -Exclude $exclude -Recurse
 } else {
-  $files = (Get-ChildItem -Include $include -Exclude $exclude)
+  Get-ChildItem -Include $include -Exclude $exclude
 }
 
 foreach ($file in $files) {
