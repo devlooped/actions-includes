@@ -3,6 +3,9 @@ $exclude = $env:RESOLVE_EXCLUDE ?? $null
 $recurse = [bool]::Parse($env:RESOLVE_RECURSE ?? "true")
 $validate = [bool]::Parse($env:RESOLVE_VALIDATE ?? "true")
 
+Write-Output "Include: $include"
+Write-Output "Exclude: $exclude"
+
 $files = if ($recurse) {
   Get-ChildItem -Include $include -Exclude $exclude -Recurse
 } else {
