@@ -27,11 +27,10 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
     - name: includes
       shell: pwsh
-      run: resolve-file-includes.ps1
+      run: |
+        &"$env:GITHUB_ACTION_PATH/resolve-file-includes.ps1"
       env:
         RESOLVE_INCLUDE: ${{ inputs.include }}
         RESOLVE_EXCLUDE: ${{ inputs.exclude }}
